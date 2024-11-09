@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave a Comment!</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IM Fell English', serif;
+            background-image: url('pic.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        nav a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        h1 {
+            font-family: 'IM Fell English', serif;
+            font-weight: bold;
+            color: black;
+            line-height: 1.2;
+            font-size: 36px;
+        }
+        .comment-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border: 2px solid #8b5e3b;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-family: 'IM Fell DW Pica', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .input-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #8b5e3b;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #8b5e3b;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6e462b;
+        }
+        .comments-section {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+        .comment {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            font-family: 'IM Fell DW Pica', serif;
+        }
+        .comment-info {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="eldamoria.html">ËLDAMORIA</a>
+        <a href="part1.html">PART I</a>
+        <a href="part2.html">PART II</a>
+        <a href="part3.html">PART III</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="comments.html">COMMENTS</a>
+    </nav>
+</nav>
+
+<header>
+    <h1>Leave a Comment!</h1>
+</header>
+
+<div class="comment-box">
+    <div class="input-area">
+        <input type="text" id="nameInput" placeholder="Your Name" required>
+        <input type="text" id="cityInput" placeholder="City" required>
+        <input type="text" id="countryInput" placeholder="Country" required>
+        <textarea id="commentInput" placeholder="Enter your comment here..." required></textarea>
+        <button onclick="postComment()">Submit Comment</button>
+    </div>
+</div>
+
+<div class="comments-section" id="commentsSection">
+    <h2 style="text-align: center; color: black;">Visitor Comments</h2>
+</div>
+
+<script>
+    function postComment() {
+        const name = document.getElementById('nameInput').value;
+        const city = document.getElementById('cityInput').value;
+        const country = document.getElementById('countryInput').value;
+        const commentText = document.getElementById('commentInput').value;
+
+        if (name.trim() === '' || city.trim() === '' || country.trim() === '' || commentText.trim() === '') {
+            alert("Please fill out all fields before submitting.");
+            return;
+        }
+
+        const commentSection = document.getElementById('commentsSection');
+
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+
+        const commentInfo = document.createElement('div');
+        commentInfo.classList.add('comment-info');
+        commentInfo.textContent = `${name} from ${city}, ${country}`;
+
+        const commentTextDiv = document.createElement('div');
+        commentTextDiv.textContent = commentText;
+
+        commentDiv.appendChild(commentInfo);
+        commentDiv.appendChild(commentTextDiv);
+
+        commentSection.appendChild(commentDiv);
+
+        // Clear input fields after posting the comment
+        document.getElementById('nameInput').value = '';
+        document.getElementById('cityInput').value = '';
+        document.getElementById('countryInput').value = '';
+        document.getElementById('commentInput').value = '';
+    }
+</script>
+
+</body>
+</html>
